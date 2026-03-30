@@ -4,13 +4,17 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { sharedStyles, colors } from "../styles";
+import { PrimaryButton, SecondaryButton } from '../components/Buttons';
+import { FormInput } from '../components/Forms';
+
 
 export default function RegisterPage() {
+  
   const router = useRouter();
 
   const handleCreateAccount = () => {
     console.log("Account created!");
-    router.push('/dashboard'); 
+    router.push('/onboarding'); 
   };
 
   return (
@@ -19,37 +23,51 @@ export default function RegisterPage() {
         <h1 style={sharedStyles.logoStyle}>Fridge Thing</h1>
         <p style={sharedStyles.subtitleStyle}>Create your account.</p>
 
-        <div style={sharedStyles.formGroup}>
-          <label style={sharedStyles.labelStyle}>Username</label>
-          <input type="text" placeholder="Enter username" style={sharedStyles.inputStyle} />
-        </div>
+        <FormInput
+          label="First Name"
+          type="text"
+          //value={firstName}
+          placeholder="Enter First Name"
+        ></FormInput>
 
-        <div style={sharedStyles.formGroup}>
-          <label style={sharedStyles.labelStyle}>Email</label>
-          <input type="text" placeholder="Enter email" style={sharedStyles.inputStyle} />
-        </div>
+        <FormInput
+          label="Last Name"
+          type="text"
+          //value={lastName}
+          placeholder="Enter Last Name"
+        ></FormInput>
 
-        <div style={sharedStyles.formGroup}>
-          <label style={sharedStyles.labelStyle}>Password</label>
-          <input type="password" placeholder="Create a password" style={sharedStyles.inputStyle} />
-        </div>
+        <FormInput
+          label="Email"
+          type="email"
+          //value={email}
+          placeholder="Enter Email"
+        ></FormInput>
 
-        <div style={sharedStyles.formGroup}>
-          <label style={sharedStyles.labelStyle}>Confirm Password</label>
-          <input type="password" placeholder="Confirm password" style={sharedStyles.inputStyle} />
-        </div>
+        <FormInput
+          label="Password"
+          type="password"
+          //value={password}
+          placeholder="Create Password"
+        ></FormInput>
+
+        <FormInput
+          label="Confirm Password"
+          type="password"
+          //value={confirmPassword}
+          placeholder="Confirm Password"
+        ></FormInput>
         
-        <button 
-          onClick={handleCreateAccount} 
-          style={sharedStyles.buttonStyle(colors.primary)}
+        <PrimaryButton
+          onClick={handleCreateAccount}
         >
           Create Account
-        </button>
+        </PrimaryButton>
 
         <Link href="/" style={{ textDecoration: 'none' }}>
-          <button style={sharedStyles.secondaryBtnStyle}>
+          <SecondaryButton>
             Back to Login
-          </button>
+          </SecondaryButton>
         </Link>
       </div>
 

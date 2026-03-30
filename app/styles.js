@@ -95,5 +95,10 @@ export const sharedStyles = {
     alignItems: "center",
     fontWeight: "500",
     boxSizing: "border-box",
-  }
+  },
+  dashboardWrapper: {
+    backgroundColor: '#f4f7f6',
+    minHeight: '100vh',
+    width: '100vw',
+},
 };

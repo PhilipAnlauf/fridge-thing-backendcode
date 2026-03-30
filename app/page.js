@@ -4,6 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { sharedStyles, colors } from "./styles";
+import { PrimaryButton, SecondaryButton } from "./components/Buttons";
+import { FormInput } from "./components/Forms";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -19,30 +21,23 @@ export default function LoginPage() {
         <h1 style={sharedStyles.logoStyle}>Fridge Thing</h1>
         <p style={sharedStyles.subtitleStyle}>Track your macros, stay chill.</p>
 
-        <div style={sharedStyles.formGroup}>
-          <label style={sharedStyles.labelStyle}>Username</label>
-          <input 
-            type="text" 
-            placeholder="Enter username" 
-            style={sharedStyles.inputStyle} 
-          />
-        </div>
+        <FormInput
+          label="Email"
+          type="email"
+          placeholder="Enter Email"
+        ></FormInput>
 
-        <div style={sharedStyles.formGroup}>
-          <label style={sharedStyles.labelStyle}>Password</label>
-          <input
-            type="password"
-            placeholder="Enter password"
-            style={sharedStyles.inputStyle}
-          />
-        </div>
+        <FormInput
+          label="Password"
+          type="password"
+          placeholder="Enter Password"
+        ></FormInput>
 
-        <button 
+        <PrimaryButton 
           onClick={handleLogin} 
-          style={sharedStyles.buttonStyle(colors.primary)}
         >
           Login
-        </button>
+        </PrimaryButton>
 
         <div style={dividerContainer}>
           <span style={dividerLine}></span>
@@ -52,19 +47,21 @@ export default function LoginPage() {
 
         <div style={sharedStyles.signUpButtonsContainer || signUpButtonsContainer}>
           <Link href="/register" style={{ textDecoration: "none" }}>
-            <button style={sharedStyles.secondaryBtnStyle}>
+            <SecondaryButton
+            >
               Sign up with Email
-            </button>
+            </SecondaryButton>
           </Link>
 
-          <button style={sharedStyles.secondaryBtnStyle}>
+          <SecondaryButton
+          >
             <img
               src="https://www.google.com/favicon.ico"
               style={{ width: "16px", marginRight: "10px" }}
               alt=""
             />
             Continue with Google
-          </button>
+          </SecondaryButton>
         </div>
       </div>
 
