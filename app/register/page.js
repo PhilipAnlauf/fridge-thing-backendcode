@@ -1,44 +1,50 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { sharedStyles } from "../styles";
-import { PrimaryButton, SecondaryButton } from '../components/Buttons';
-import { FormInput } from '../components/Forms';
+import { PrimaryButton, SecondaryButton } from "../components/Buttons";
+import { FormInput } from "../components/Forms";
 
 export default function RegisterPage() {
   const router = useRouter();
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleCreateAccount = async () => {
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
-      const res = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, email, password, confirmPassword }),
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+          confirmPassword,
+        }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || 'Something went wrong.');
+        setError(data.error || "Something went wrong.");
         return;
       }
 
-      router.push('/onboarding');
+      router.push("/dashboard"); //temp change for demo
     } catch (err) {
-      setError('Network error. Please check your connection.');
+      setError("Network error. Please check your connection.");
     } finally {
       setLoading(false);
     }
@@ -92,14 +98,15 @@ export default function RegisterPage() {
           placeholder="Confirm Password"
         />
 
-        <PrimaryButton onClick={handleCreateAccount} style={loading ? { opacity: 0.7 } : {}}>
-          {loading ? 'Creating Account...' : 'Create Account'}
+        <PrimaryButton
+          onClick={handleCreateAccount}
+          style={loading ? { opacity: 0.7 } : {}}
+        >
+          {loading ? "Creating Account..." : "Create Account"}
         </PrimaryButton>
 
-        <Link href="/" style={{ textDecoration: 'none' }}>
-          <SecondaryButton>
-            Back to Login
-          </SecondaryButton>
+        <Link href="/" style={{ textDecoration: "none" }}>
+          <SecondaryButton>Back to Login</SecondaryButton>
         </Link>
       </div>
 
@@ -109,14 +116,14 @@ export default function RegisterPage() {
 }
 
 const errorStyle = {
-  color: '#e74c3c',
-  fontSize: '14px',
+  color: "#e74c3c",
+  fontSize: "14px",
   fontFamily: "'Lexend', sans-serif",
-  marginBottom: '16px',
-  padding: '10px 14px',
-  backgroundColor: '#fdf0ef',
-  border: '1px solid #f5c6c2',
-  borderRadius: '6px',
-  width: '325px',
-  boxSizing: 'border-box',
-};
+  marginBottom: "16px",
+  padding: "10px 14px",
+  backgroundColor: "#fdf0ef",
+  border: "1px solid #f5c6c2",
+  borderRadius: "6px",
+  width: "325px",
+  boxSizing: "border-box",
+};
