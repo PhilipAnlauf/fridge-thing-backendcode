@@ -101,4 +101,15 @@ export const sharedStyles = {
     minHeight: '100vh',
     width: '100vw',
 },
+  onboardingWrapper: {
+    backgroundColor: '#f4f7f6',
+    minHeight: '100vh',
+    width: '100vw',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: "200px",
+    overflow: 'hidden',
+  }
 };

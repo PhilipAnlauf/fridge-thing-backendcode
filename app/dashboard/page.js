@@ -14,9 +14,12 @@ export default function DashboardPage() {
   };
 
   return (
-    <div style={sharedStyles.dashboardWrapper}>
+    <div style={{ height: '100vh', width: '100vw', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
       <Navbar onLogout={handleLogout}
-      ></Navbar>
+      ></Navbar>  
+    <div style={sharedStyles.dashboardWrapper}>
+
     </div>
+  </div>
   );
 }
