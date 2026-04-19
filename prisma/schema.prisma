@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") // Ignore any squigles, red squigle deceives -Phil
 }
 
 model User {
@@ -17,5 +17,52 @@ model User {
   email        String   @unique
   passwordHash String
   createdAt    DateTime @default(now())
+  isAdmin      Boolean  @default(false)
+  isAuthor     Boolean  @default(false)
+
+  cal_Goal Int @default(2000)
+  cal_Prog Int @default(0)
+
+  pro_Goal Int @default(170)
+  pro_Prog Int @default(0)
+
+  car_Goal Int @default(240)
+  car_Prog Int @default(0)
+
+  fat_Goal Int @default(75)
+  fat_Prog Int @default(0)
+
+  userPantry PantryItem[]
 }
 
+type PantryItem {
+  itemId   String
+  quantity Int    @default(1)
+}
+
+model Items {
+  itemId      String @id @default(auto()) @map("_id") @db.ObjectId
+  itemName    String
+  servingSize Float
+  servingUnit String
+  calories    Int
+  protein     Int
+  carbs       Int
+  fat         Int
+}
+
+type Ingredients {
+  itemId   String
+  quantity Float  @default(1)
+  unit     Int
+}
+
+model Recipes {
+  recipeID       String        @id @default(auto()) @map("_id") @db.ObjectId
+  recipeName     String
+  ingredientList Ingredients[]
+  calories       Int
+  protein        Int
+  carbs          Int
+  fat            Int
+}
