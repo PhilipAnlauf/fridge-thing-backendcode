@@ -1,0 +1,11 @@
+// app/actions/auth.js
+"use server";
+
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
+export async function handleLogout() {
+    const cookieStore = await cookies();
+    cookieStore.delete("fridge_auth_token"); // Delete your cookie
+    redirect("/login"); // Send them home
+}

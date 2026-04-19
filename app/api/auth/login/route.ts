@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { prisma } from "@/lib/prisma";
 
 const JWT_SECRET = process.env.JWT_SECRET!;
-const COOKIE_NAME = "fridge_auth_token";
+const COOKIE_NAME = "fridge_auth_token"; //Might be an issue later?, fine for local host demo.
 
 export async function POST(req: NextRequest) {
   try {

@@ -1,7 +1,5 @@
-"use client";
-
 import React from "react";
-import { useRouter } from "next/navigation";
+//import { useRouter } from "next/navigation";
 import { Navbar } from "../components/Navbar";
 import DashboardHeader from "../components/dashboard/DashboardHeader";
 import MacroSummary from "../components/dashboard/MacroSummary";
@@ -9,19 +7,23 @@ import InventoryPreview from "../components/dashboard/InventoryPreview";
 import QuickActions from "../components/dashboard/QuickActions";
 import RecipeSuggestions from "../components/dashboard/RecipeSuggestions";
 
-export default function DashboardPage() {
-  const router = useRouter();
+//These two imports are related to getting user info and such once logged in
+import { getAuthUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-  const handleLogout = () => {
-    console.log("User logged out");
-    router.push("/");
-  };
+export default async function DashboardPage() {
+  //const router = useRouter(); removed temporarily since not compatible with the asnyc function auth
+
+  const user = await getAuthUser();
+  if (!user) {
+    redirect("/login"); // Kick them out if not logged in
+  }
 
   const macroData = [
-    { title: "Calories", current: 1850, goal: 2200, unit: "kcal" },
-    { title: "Protein", current: 132, goal: 170, unit: "g" },
-    { title: "Carbs", current: 190, goal: 240, unit: "g" },
-    { title: "Fats", current: 58, goal: 75, unit: "g" },
+    { title: "Calories", current: user.cal_Prog, goal: user.cal_Goal, unit: "kcal" },
+    { title: "Protein", current: user.pro_Prog, goal: user.pro_Goal, unit: "g" },
+    { title: "Carbs", current: user.car_Prog, goal: user.car_Goal, unit: "g" },
+    { title: "Fats", current: user.fat_Prog, goal: user.fat_Goal, unit: "g" },
   ];
 
   const inventoryItems = [
@@ -51,12 +53,14 @@ export default function DashboardPage() {
     },
   ];
 
+  console.log(user.isAdmin);
+
   return (
     <div style={styles.page}>
-      <Navbar onLogout={handleLogout} />
+      <Navbar />
 
       <main style={styles.main}>
-        <DashboardHeader username="Antonio" />
+        <DashboardHeader username={user.firstName} />
 
         <MacroSummary macroData={macroData} />
 
