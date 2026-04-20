@@ -77,18 +77,18 @@ export const RecipeCard = ({ recipe, isSelected, onClick, isVisible }) => {
           {recipe.description}
         </p>
 
-        {/* <div
+        <div
           style={{
+            fontWeight: "Bold",
             marginTop: "auto",
-            paddingTop: "10px",
+            paddingTop: "12px",
             fontSize: "0.85rem",
-            fontWeight: "bold",
+            marginLeft: "auto",
             color: colors.secondary,
-            borderTop: "1px dashed #eee", // Optional: subtle separator from description
           }}
         >
-          Protein: {recipe.p}g | Carbs: {recipe.c}g | Fiber : {recipe.f}g
-        </div> */}
+          Calories: {recipe.cal}
+        </div>
       </div>
 
       {/* Footer Info */}

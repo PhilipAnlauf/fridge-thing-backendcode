@@ -10,9 +10,9 @@ export default function RecipeSearch() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const allRecipes = useMemo(() => [
-    { id: 1, title: "Carmel Apple Pie", description: "For when you need a treat.", p: 8, c: 80, f: 3.28, time: 150   },
-    { id: 2, title: "Citrus Salmon and Asparagus", description: "Succulent tender Salmon on a bed of asparagus covered in a lemon garlic butter sauce.", p: 32, c: 5.55, f: 1.69, time: 15 },
-    { id: 3, title: "Feta-stuffed Hamburger", description: "Protein-rich burgers are stuffed and seasoned for a Mediterranean twist.", p: 24, c: 1.67, f: 0.04, time: 20 },
+    { id: 1, title: "Carmel Apple Pie", description: "For when you need a treat.", cal: 480, p: 8, c: 80, f: 3.28, time: 150   },
+    { id: 2, title: "Citrus Salmon and Asparagus", description: "Succulent tender Salmon on a bed of asparagus covered in a lemon garlic butter sauce.", cal: 250, p: 32, c: 5.55, f: 1.69, time: 15 },
+    { id: 3, title: "Feta-stuffed Hamburger", description: "Protein-rich burgers are stuffed and seasoned for a Mediterranean twist.", cal: 390, p: 24, c: 1.67, f: 0.04, time: 20 },
     { id: 4, title: "Five Hundred Cigarettes", description: "I feel as if I have been standing my entire life and I just sat down.", p: 0, c: 0, f: 3, time: 0 },
   ], []);
   const filteredRecipes = allRecipes.filter(recipe => 
